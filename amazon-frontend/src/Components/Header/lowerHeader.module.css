@@ -1,0 +1,20 @@
+.lower_header{
+  display: flex;
+  list-style: none;
+  text-align: center;
+  /* justify-content: center; */
+  gap: 8px;
+  padding-left: 0;
+  background-color: rgb(34, 56, 102);
+  color: white;
+}
+.lower_header li:hover{
+  border: 1px solid white;
+  cursor: pointer;
+  
+}
+@media screen and (max-width: 576px){
+  .lower_header ul li:not(:first-child){
+  display: none;
+  }
+}
