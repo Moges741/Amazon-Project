@@ -6,7 +6,6 @@ import '../GeneralStyle/bootstrap.css';
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import LowerHeader from './LowerHeader';
-
 import SearchIcon from "@mui/icons-material/Search";
 const Header = () => {
   return (
