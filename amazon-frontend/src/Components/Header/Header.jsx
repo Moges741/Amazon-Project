@@ -1,4 +1,5 @@
 import React from 'react'
+import {Link} from 'react-router-dom'
 import logo from '../../assets/images/image.png'
 import flag from '../../assets/images/unitedstates1960.png';
 import styles from '../Header/header.module.css'
@@ -14,9 +15,9 @@ const Header = () => {
         <div className={styles.header_container}>
           <div className={styles.logo}>
             {" "}
-            <a href="#">
+            <Link to="/">
               <img src={logo} />
-            </a>
+            </Link>
           </div>
           {/* delivery */}
           <span>
@@ -39,27 +40,27 @@ const Header = () => {
           </div>
           {/* right side */}
 
-          <a href="" className={styles.language}>
+          <Link to="" className={styles.language}>
             <img src={flag} alt="US Flag" />
             <section>
               <option value="">EN</option>
             </section>
-          </a>
+          </Link>
           {/* three components */}
 
-          <a href="" className={styles.other_link}>
+          <Link to="/auth" className={styles.other_link}>
             <p>Sign In</p>
             <span>Account & Lists</span>
-          </a>
+          </Link>
           {/* orders */}
-          <a href="" className={styles.other_link}>
+          <Link to="/orders" className={styles.other_link}>
             <p>returns</p>
             <span>& Orders</span>
-          </a>
-          <a href="" className={styles.cart}>
+          </Link>
+          <Link to="/cart" className={styles.cart}>
             <ShoppingCartIcon size={35} />
             <span>0</span>
-          </a>
+          </Link>
         </div>
       </section>
       <LowerHeader/>
