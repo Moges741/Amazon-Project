@@ -112,6 +112,7 @@
 .delivery:hover, .logo:hover, .language:hover, .other_link:hover, .cart:hover{
   border:  1px solid white;
   border-radius: 3px;
+  color: white;
 }
 
 @media screen and (max-width: 576px){

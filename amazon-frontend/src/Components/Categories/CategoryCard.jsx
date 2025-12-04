@@ -3,7 +3,7 @@ import styles from './category.module.css'
 
 const CategoryCard = ({ information }) => {
   return (
-    <section className={styles.category}>
+    <section className={`${styles.category}` }>
       <a href="">
         <span>
           <h2>{information.title}</h2>
