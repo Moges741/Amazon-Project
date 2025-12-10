@@ -14,8 +14,8 @@ const ProductCard = ({ products }) => {
       <div>
         <h3>{title}</h3>
         <div className={styles.rating}>
-          <Rating value={rating.rate} precision={0.1} />
-          <small>{rating.count}</small>
+          <Rating value={rating?.rate} precision={0.1} />
+          <small>{rating?.count}</small>
         </div>
         <div>
           <CurrencyFormat amount={price} />

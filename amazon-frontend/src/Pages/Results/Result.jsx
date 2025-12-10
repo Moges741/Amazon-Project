@@ -6,6 +6,7 @@ import axios from "axios";
 import { productUrl } from "../../API/endPoints";
 import ProductCard from "../../Components/Products/ProductCard";
 import styles from "./result.module.css";
+import Spinner from "../../Components/spinner/Spinner";
 
 const Result = () => {
   const [results, setResults] = useState([]);
@@ -62,11 +63,8 @@ const Result = () => {
         <p style={{ padding: "30px" }}>Category / {categoryName}</p>
         <hr />
 
-        {results.length === 0 ? (
-          <div className={styles.noProducts}>
-            No products found in {categoryName} category.
-          </div>
-        ) : (
+        {loading?(
+        <Spinner/>):(
           <div className={styles.products_container}>
             {results.map((products) => (
               <ProductCard key={products.id} products={products} />

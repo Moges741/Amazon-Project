@@ -4,21 +4,28 @@ import { useParams } from 'react-router-dom'
 import axios from 'axios'
 import { productUrl } from '../../API/endPoints'
 import ProductCard from '../../Components/Products/ProductCard'
+import Spinner from '../../Components/spinner/Spinner'
 
 const ProductDetails = () => {
   const {productId} = useParams();
   const [product, setProduct] = useState({});
+  const [isLoading , setIsLoading] = useState(false)
 useEffect(()=>{
+  setIsLoading(true);
 axios.get(`${productUrl}/products/${productId}`).then((res)=>{
   // console.log(res.data)
 setProduct(res.data)
+setIsLoading(false)
 }).catch((err)=>{
   console.log("Error" , err)
+  setIsLoading(false)
 })
-})
+},[productId]);
   return (
     <Layout>
-     <ProductCard  products={product}/>
+      {
+        isLoading?(<Spinner/>):( <ProductCard  products={product}/>)
+      }
     </Layout>
   )
 }

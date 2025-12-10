@@ -7,7 +7,7 @@ const Category = () => {
   return (
     <section className={`${styles.card_container}`}>
       {Data.map((infos) => {
-       return <CategoryCard key={infos.id} information={infos} />;
+      return <CategoryCard key={infos.id} information={infos} />;
       })}
     </section>
   );
