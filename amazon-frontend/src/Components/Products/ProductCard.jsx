@@ -1,14 +1,16 @@
 import React from "react";
 import Rating from "@mui/material/Rating";
 import CurrencyFormat from "../CurrencyFormat/CurrencyFormat";
+import {Link} from 'react-router-dom'
 import styles from './products.module.css'
+
 const ProductCard = ({ products }) => {
   const { image, title, id, rating, price } = products;
   return (
     <div className={styles.container}>
-      <a href="#">
+      <Link to={`/products/${id}`}>
         <img src={image} alt={title} />
-      </a>
+      </Link>
       <div>
         <h3>{title}</h3>
         <div className={styles.rating}>
