@@ -31,6 +31,7 @@
   grid-template-columns: repeat(4,1fr);
   place-items: center;
   overflow-x: hidden;
+  margin-bottom: 100px;
 }
 @media (max-width: 1200px){
  .card_container{
