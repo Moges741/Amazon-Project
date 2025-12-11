@@ -17,10 +17,11 @@
 .container{
   display: flex;
   justify-content: center;
-
   gap: 20px;
   margin-top: 20px;
-
+}
+.container div:not(.subtotal){
+  height: auto !important;
 }
 .cart_container{
   padding: 20px;
@@ -37,6 +38,7 @@
 .cart_container hr{
   margin: 10px;
 }
+
 .subtotal{
   padding: 20px;
   min-width: 300px;
@@ -68,6 +70,31 @@
 .subtotal span{
 display: flex;
 gap: 20px;
+}
+
+.content_and_buttons{
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+.increment_decrement{
+  display: flex;
+align-items: center;
+justify-content: center;
+font-size: 28px;
+font-weight: bold;
+}
+.increment_decrement button{
+  width: 80px;
+  border: 1px solid var(--primary-color);
+  border-radius: 3px;
+  height: 50px;
+}
+.increment{
+  margin-right: 3px;
+}
+.decrement{
+  margin-left: 3px;
 }
 @media screen and (max-width: 968px){
   .container{

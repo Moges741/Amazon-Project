@@ -26,7 +26,7 @@ const addToCart = () =>{
       </Link>
       <div>
         <h3>{title}</h3>
-        {productDesc && <div style={{ maxWidth: "750px" }}>{description}</div>}
+        {productDesc && <div style={{ maxWidth: "450px" }}>{description}</div>}
         <div className={styles.rating}>
           <Rating value={rating?.rate} precision={0.1} />
           <small>{rating?.count}</small>
