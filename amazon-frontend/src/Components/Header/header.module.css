@@ -128,4 +128,13 @@
   .language{
     display: none;
   }
+  .search{
+    width: 100%;
+  }
+}
+
+@media screen and ((max-width: 740px) and (min-width: 576px)){
+    .delivery{
+    display: none;
+  }
 }
