@@ -6,9 +6,9 @@ import styles from './products.module.css'
 import { DataContext } from "../Data/DataProvider";
 import { Type } from "../../Utility/action.type";
 
-const ProductCard = ({ products, flex,productDesc }) => {
+const ProductCard = ({ products, flex,productDesc, renderAdd }) => {
   const { image, title, id, rating, price,description } = products;
-  
+
 const [state,dispatch] = useContext(DataContext);
 
 const addToCart = () =>{
@@ -20,13 +20,13 @@ const addToCart = () =>{
   })
 }
   return (
-    <div className={`${styles.container} ${flex?styles.product_flexed : ''}`}>
+    <div className={`${styles.container} ${flex ? styles.product_flexed : ""}`}>
       <Link to={`/products/${id}`}>
         <img src={image} alt={title} />
       </Link>
       <div>
         <h3>{title}</h3>
-        {productDesc &&  <div style={{maxWidth: "750px"}}>{description}</div> }
+        {productDesc && <div style={{ maxWidth: "750px" }}>{description}</div>}
         <div className={styles.rating}>
           <Rating value={rating?.rate} precision={0.1} />
           <small>{rating?.count}</small>
@@ -34,7 +34,11 @@ const addToCart = () =>{
         <div>
           <CurrencyFormat amount={price} />
         </div>
-        <button className={styles.button} onClick={addToCart}>Add to cart</button>
+        {renderAdd && (
+          <button className={styles.button} onClick={addToCart}>
+            Add to cart
+          </button>
+        )}
       </div>
     </div>
   );

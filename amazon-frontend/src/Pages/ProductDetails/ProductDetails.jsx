@@ -23,11 +23,18 @@ setIsLoading(false)
 },[productId]);
   return (
     <Layout>
-      {
-        isLoading?(<Spinner/>):( <ProductCard  products={product} flex={true} productDesc={true}/>)
-      }
+      {isLoading ? (
+        <Spinner />
+      ) : (
+        <ProductCard
+          products={product}
+          flex={true}
+          productDesc={true}
+          renderAdd={true}
+        />
+      )}
     </Layout>
-  )
+  );
 }
 
 export default ProductDetails;
