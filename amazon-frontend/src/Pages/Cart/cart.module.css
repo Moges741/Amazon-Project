@@ -1,0 +1,6 @@
+.carts_basket{
+  display: flex;
+  flex-direction: column;
+  gap: 80px;
+  height:  100%;
+}
