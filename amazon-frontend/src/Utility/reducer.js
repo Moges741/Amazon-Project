@@ -1,11 +1,9 @@
 import { Type } from "./action.type";
-
 export const initialState = {
   basket: [],
 };
 export const reducer = (state, action) => {
-  switch (action.type) {
-    
+  switch (action.type) { 
     case Type.ADD_TO_BASKET: {
       const existingItemIndex = state.basket.findIndex(
         (basketItem) => basketItem.id === action.item.id
@@ -39,7 +37,6 @@ export const reducer = (state, action) => {
           newBasket = newBasket.filter((_, i) => i !== index);
         }
       }
-
       return {
         ...state,
         basket: newBasket,

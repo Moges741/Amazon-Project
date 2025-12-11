@@ -6,6 +6,8 @@ import styles from "./cart.module.css";
 import CurrencyFormat from "../../Components/CurrencyFormat/CurrencyFormat";
 import { Link } from "react-router-dom";
 import { Type } from "../../Utility/action.type";
+import { IoIosArrowUp } from "react-icons/io";
+import { IoIosArrowDown } from "react-icons/io";
 const Cart = () => {
   const [{ basket, user }, dispatch] = useContext(DataContext);
   const total = basket.reduce((amount, item) => {
@@ -38,7 +40,7 @@ const Cart = () => {
             ) : (
               basket?.map((item, id) => {
                 return (
-                  <section  className={styles.content_and_buttons}>
+                  <section className={styles.content_and_buttons}>
                     <div key={id}>
                       <ProductCard
                         products={item}
@@ -48,9 +50,19 @@ const Cart = () => {
                       />
                     </div>
                     <div className={styles.increment_decrement}>
-                      <button className={styles.increment} onClick={() => increment(item)}>+</button>
+                      <button
+                        className={styles.increment}
+                        onClick={() => increment(item)}
+                      >
+                        <IoIosArrowUp/>
+                      </button>
                       <span>{item.amount}</span>
-                      <button className={styles.decrement} onClick={() => decrement(item.id)}>-</button>
+                      <button
+                        className={styles.decrement}
+                        onClick={() => decrement(item.id)}
+                      >
+                        <IoIosArrowDown/>
+                      </button>
                     </div>
                   </section>
                 );

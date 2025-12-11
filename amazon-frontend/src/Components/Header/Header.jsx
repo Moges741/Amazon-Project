@@ -12,7 +12,14 @@ import SearchIcon from "@mui/icons-material/Search";
 import { DataContext } from '../Data/DataProvider';
 const Header = () => {
 const [{basket}, dispatch] = useContext(DataContext);
-
+// const totalItem = basket?.reduce((item, amount)=>{
+//   return item.amount + amount;
+// },0)
+const totalItem =
+  basket?.reduce(
+    (amount, item) => amount + (item.quantity || item.amount || 1),
+    0
+  ) || 0;
   return (
     <>
       <section className={styles.fixed_position}>
@@ -64,7 +71,7 @@ const [{basket}, dispatch] = useContext(DataContext);
             </Link>
             <Link to="/cart" className={styles.cart}>
               <ShoppingCartIcon size={35} />
-              <span>{basket.length}</span>
+              <span>{totalItem}</span>
             </Link>
           </div>
         </section>

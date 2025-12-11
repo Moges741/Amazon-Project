@@ -79,22 +79,23 @@ gap: 20px;
 }
 .increment_decrement{
   display: flex;
+  flex-direction: column;
 align-items: center;
 justify-content: center;
 font-size: 28px;
 font-weight: bold;
 }
 .increment_decrement button{
-  width: 80px;
-  border: 1px solid var(--primary-color);
-  border-radius: 3px;
-  height: 50px;
+  border:none
 }
 .increment{
-  margin-right: 3px;
+ background-color: transparent;
 }
 .decrement{
-  margin-left: 3px;
+  background-color: transparent;
+}
+.increment_decrement button:hover svg{
+  background-color: var(--primary-color);
 }
 @media screen and (max-width: 968px){
   .container{
