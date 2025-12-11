@@ -15,59 +15,61 @@ const [{basket}, dispatch] = useContext(DataContext);
 
   return (
     <>
-      <section>
-        <div className={styles.header_container}>
-          <div className={styles.logo}>
-            {" "}
-            <Link to="/">
-              <img src={logo} />
+      <section className={styles.fixed_position}>
+        <section>
+          <div className={styles.header_container}>
+            <div className={styles.logo}>
+              {" "}
+              <Link to="/">
+                <img src={logo} />
+              </Link>
+            </div>
+            {/* delivery */}
+            <span>
+              {/* icon */}
+              <LocationOnIcon />
+            </span>
+
+            <div className={styles.delivery}>
+              <p>Delivered to</p>
+              <span>Ethiopia</span>
+            </div>
+
+            <div className={styles.search}>
+              {/* search */}
+              <select name="" id="">
+                <option value="">All</option>
+              </select>
+              <input type="text" name="" id="" placeholder="search product" />
+              <SearchIcon size={45} />
+            </div>
+            {/* right side */}
+
+            <Link to="" className={styles.language}>
+              <img src={flag} alt="US Flag" />
+              <section>
+                <option value="">EN</option>
+              </section>
+            </Link>
+            {/* three components */}
+
+            <Link to="/auth" className={styles.other_link}>
+              <p>Sign In</p>
+              <span>Account & Lists</span>
+            </Link>
+            {/* orders */}
+            <Link to="/orders" className={styles.other_link}>
+              <p>returns</p>
+              <span>& Orders</span>
+            </Link>
+            <Link to="/cart" className={styles.cart}>
+              <ShoppingCartIcon size={35} />
+              <span>{basket.length}</span>
             </Link>
           </div>
-          {/* delivery */}
-          <span>
-            {/* icon */}
-            <LocationOnIcon />
-          </span>
-
-          <div className={styles.delivery}>
-            <p>Delivered to</p>
-            <span>Ethiopia</span>
-          </div>
-
-          <div className={styles.search}>
-            {/* search */}
-            <select name="" id="">
-              <option value="">All</option>
-            </select>
-            <input type="text" name="" id="" placeholder="search product" />
-            <SearchIcon size={45} />
-          </div>
-          {/* right side */}
-
-          <Link to="" className={styles.language}>
-            <img src={flag} alt="US Flag" />
-            <section>
-              <option value="">EN</option>
-            </section>
-          </Link>
-          {/* three components */}
-
-          <Link to="/auth" className={styles.other_link}>
-            <p>Sign In</p>
-            <span>Account & Lists</span>
-          </Link>
-          {/* orders */}
-          <Link to="/orders" className={styles.other_link}>
-            <p>returns</p>
-            <span>& Orders</span>
-          </Link>
-          <Link to="/cart" className={styles.cart}>
-            <ShoppingCartIcon size={35} />
-            <span>{basket.length}</span>
-          </Link>
-        </div>
+        </section>
+        <LowerHeader />
       </section>
-      <LowerHeader/>
     </>
   );
 }
