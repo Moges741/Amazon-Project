@@ -24,7 +24,7 @@ setIsLoading(false)
   return (
     <Layout>
       {
-        isLoading?(<Spinner/>):( <ProductCard  products={product}/>)
+        isLoading?(<Spinner/>):( <ProductCard  products={product} flex={true} productDesc={true}/>)
       }
     </Layout>
   )

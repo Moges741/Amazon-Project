@@ -4,11 +4,15 @@ import logo from '../../assets/images/image.png'
 import flag from '../../assets/images/unitedstates1960.png';
 import styles from '../Header/header.module.css'
 import '../GeneralStyle/bootstrap.css';
+import {useContext} from 'react'
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import LowerHeader from './LowerHeader';
 import SearchIcon from "@mui/icons-material/Search";
+import { DataContext } from '../Data/DataProvider';
 const Header = () => {
+const [{basket}, dispatch] = useContext(DataContext);
+
   return (
     <>
       <section>
@@ -59,7 +63,7 @@ const Header = () => {
           </Link>
           <Link to="/cart" className={styles.cart}>
             <ShoppingCartIcon size={35} />
-            <span>0</span>
+            <span>{basket.length}</span>
           </Link>
         </div>
       </section>

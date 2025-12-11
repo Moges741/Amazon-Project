@@ -12,14 +12,14 @@ const Products = () => {
         try{
           const request = await axios.get("https://fakestoreapi.com/products");
           setProduct(request.data);
-       setIsLoading(false);
+          setIsLoading(false);
         }catch(err){
           console.log("ERROR : ",err);
           setIsLoading(false);
         }
       }
     )();
-  },[])
+  },[]);
   return (
     <>
       {isLoading ? (
