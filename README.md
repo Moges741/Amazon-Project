@@ -4,7 +4,6 @@ This project replicates the Amazon shopping UI — including categories, product
 
 # 🚀 Live Demo
 
-👉 Add your Netlify/Vercel link here
 - [Live Demo](https://your-amazon-clone.netlify.app)
 
 # 🛠️ Tech Stack
@@ -98,80 +97,46 @@ GET /products/category/:categoryName
 /products/category/electronics
 ```
 
-⚙️ Installation
-git clone https://github.com/your-username/amazon-clone.git
-cd amazon-clone
+## ⚙️ Installation
+```
+git clone [https://github.com/your-username/Amazon-Project.git](https://github.com/Moges741/Amazon-Project.git)
+cd Amazon-Project
 npm install
 npm run dev
-
-
-Build for production:
-
-npm run build
-
-🔗 API Reference (FakeStoreAPI)
-Get all products
+```
+## 🔗 API Reference (FakeStoreAPI)
+```
+- Get all products
 GET https://fakestoreapi.com/products
-
-Get category products
+- Get category products
 GET https://fakestoreapi.com/products/category/:categoryName
+```
+### Categories Used:
+- electronics
+- jewelery
+- men's clothing
+- women's clothing
 
-Categories Used:
+## 📚 What I Learned
+- Organizing large React projects
+- Using Context API for global state
+- Handling API errors + loading states
+- Building reusable UI components
+- Clean folder structure (enterprise-style)
+- CSS Modules for isolated styling
+- Deploying on Netlify
 
-electronics
-
-jewelery
-
-men's clothing
-
-women's clothing
-
-📸 Screenshots
-
-Add your project screenshots here
-
-/screenshots/
-    ├── landing.png
-    ├── category.png
-    ├── product.png
-    ├── cart.png
-
-📚 What I Learned
-
-Organizing large React projects
-
-Using Context API for global state
-
-Handling API errors + loading states
-
-Building reusable UI components
-
-Clean folder structure (enterprise-style)
-
-CSS Modules for isolated styling
-
-Deploying on Netlify
-
-🚀 Future Improvements
-
-User Authentication (Firebase)
-
-Wishlist System
-
-Search Auto-suggestions
-
-Product Filtering (price, rating, brand)
-
-Advanced Cart with quantity update
-
-Dark Mode
-
-🧑‍💻 Contributing
-
+## 🚀 Future Improvements
+- User Authentication (Firebase)
+- Wishlist System
+- Search Auto-suggestions
+- Product Filtering (price, rating, brand)
+- Advanced Cart with quantity update
+- Dark Mode
+## 🧑‍💻 Contributing
 Pull requests are welcome.
 If you find a bug or want a feature, open an issue.
 
-📜 License
-
+## 📜 License
 This is an educational project.
 Not affiliated with Amazon in any way.
