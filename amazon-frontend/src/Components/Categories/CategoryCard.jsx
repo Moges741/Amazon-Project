@@ -1,11 +1,11 @@
-import React from 'react'
-import styles from './category.module.css'
-import {Link} from 'react-router-dom'
+import React from "react";
+import styles from "./category.module.css";
+import { Link } from "react-router-dom";
 
-const CategoryCard = ({ information }) => {
-  console.log(information)
+const CategoryCard = ({ information, renderAdd }) => {
+  console.log(information);
   return (
-    <section className={`${styles.category}` }>
+    <section className={`${styles.category}`}>
       <Link to={`/category/${information.name}`}>
         <span>
           <h2>{information?.title}</h2>

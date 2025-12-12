@@ -20,6 +20,9 @@
   font-weight: bold;
   color: rgb(9,132, 209);
 }
+.category h2{
+  font-size: 23px;
+}
 .category h2, p{
   padding: 5px;
   margin-left: 15px;
@@ -32,6 +35,9 @@
   place-items: center;
   overflow-x: hidden;
   margin-bottom: 100px;
+}
+.card_container a:hover{
+  color: black;
 }
 @media (max-width: 1200px){
  .card_container{
