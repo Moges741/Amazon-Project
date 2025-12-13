@@ -5,11 +5,10 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "react-scripts build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "start": "react-scripts start",
-    "build": "react-scripts build"
+    "start": "react-scripts start"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",
@@ -25,6 +24,7 @@
     "react-icons": "^5.5.0",
     "react-responsive-carousel": "^3.2.23",
     "react-router-dom": "^7.10.1",
+    "react-scripts": "^5.0.1",
     "react-spinners": "^0.17.0"
   },
   "devDependencies": {
