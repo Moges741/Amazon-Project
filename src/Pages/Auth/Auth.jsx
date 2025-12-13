@@ -1,39 +1,51 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import styles from "./auth.module.css";
 import logo from "../../assets/images/logo_PNG6.png";
 import { Link } from "react-router-dom";
 import {auth} from '../../Utility/firebase'
 import { signInWithEmailAndPassword, createUserWithEmailAndPassword } from "firebase/auth"; //from fire base built in
+import {DataContext} from '../../Components/Data/DataProvider'
 const Auth = () => {
-//   const [email, setEmail] = useState("");
-//   const [password, setPassword] = useState("");
-//   const [error, setError] = useState("");
-// const authHandler = async(e) =>{
-//   e.preventDefault();
-//   console.log(e.target.name)
-//   if (e.target.name === "signIp") {
-//     // fireBase Auth
-//     signInWithEmailAndPassword(auth, email, password)
-//       .then((userInfo) => {
-//         console.log(userInfo);
-//       })
-//       .catch((err) => {
-//         console.log(err);
-//       });
-//   } else {
-//     createUserWithEmailAndPassword(auth, email, password)
-//       .then((userInfo) => {
-//         console.log(userInfo);
-//       })
-//       .catch((err) => {
-//         console.log(err);
-//       });
-//   }
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const [user, dispatch] = useContext(DataContext);
+console.log(user)
 
-// }
+const authHandler = async(e) =>{
+  e.preventDefault();
+  console.log(e.target.name)
+  if (e.target.name === "signIp") {
+    // fireBase Auth
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userInfo) => {
+        console.log(userInfo);
+        dispatchEvent({
+          type:Type.SET_USER,
+          user:userInfo.user
+        })
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  } else {
+    createUserWithEmailAndPassword(auth, email, password)
+      .then((userInfo) => {
+        console.log(userInfo);
+          dispatch({
+            type: Type.SET_USER,
+            user: userInfo.user,
+          });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
+}
   return (
     <section className={styles.login_container}>
-      <Link to="">
+      <Link to="/">
         <img src={logo} alt="" />
       </Link>
       <div className={styles.sign_part}>
