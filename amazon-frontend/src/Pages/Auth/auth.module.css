@@ -1,0 +1,53 @@
+.login_container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.login_container img{
+  width: 100px;
+  object-fit: contain;
+  margin: 30px auto;
+
+}
+.sign_part{
+  width: 300px;
+  box-shadow: 1px 1px 2px 2px rgb(210, 209, 209);
+  padding: 14px;
+  border-radius: 3px;
+
+}
+.sign_part input{
+  width: 100%;
+}
+.sign_part .first_sign{
+  background-color: var(--primary-color);
+  border: 1.5px solid #cd7c14;
+  border-radius: 2px;
+  margin-top: 5px;
+  padding: 5px 0;
+}
+.sign_part .first_sign:hover{
+  background-color: var(--primary-shade);
+}
+.form_container{
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+}
+.sign_part p{
+  font-size: 14px;
+  margin-bottom: 4px;
+  margin-left: -4px;
+
+}
+.create_account{
+  width: 100%;
+  align-items: center;
+  border: 1.5px solid gray;
+  border-radius: 3px;
+  padding: 3px;
+  
+}
+.create_account:hover{
+  background-color: lightgray;
+}
