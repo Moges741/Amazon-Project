@@ -100,6 +100,12 @@
   color: white;
   text-decoration: none;
 }
+/* For Login part */
+.hello_user{
+  margin-top: 15px;
+  margin-bottom: -5px;
+ text-align: center;
+}
 .cart{
   position: relative;
   color: white;

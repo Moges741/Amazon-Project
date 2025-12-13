@@ -10,8 +10,9 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import LowerHeader from './LowerHeader';
 import SearchIcon from "@mui/icons-material/Search";
 import { DataContext } from '../Data/DataProvider';
+import { auth } from '../../Utility/firebase';
 const Header = () => {
-const [{basket}, dispatch] = useContext(DataContext);
+const [{user, basket}, dispatch] = useContext(DataContext);
 // const totalItem = basket?.reduce((item, amount)=>{
 //   return item.amount + amount;
 // },0)
@@ -26,7 +27,6 @@ const totalItem =
         <section>
           <div className={styles.header_container}>
             <div className={styles.logo}>
-              {" "}
               <Link to="/">
                 <img src={logo} />
               </Link>
@@ -60,9 +60,20 @@ const totalItem =
             </Link>
             {/* three components */}
 
-            <Link to="/auth" className={styles.other_link}>
-              <p>Sign In</p>
-              <span>Account & Lists</span>
+            <Link to={!user && "/auth"} className={styles.other_link}>
+              {user ? (
+                <>
+                  <p className={styles.hello_user}>
+                    Hello {user?.email?.split("@")[0]}{" "}
+                  </p>
+                  <p onClick={()=>auth.signOut()}>Sign Out</p>
+                </>
+              ) : (
+                <>
+                  <p className={styles.hello_user}>Sign In</p>
+                  <span>Account & Lists</span>
+                </>
+              )}
             </Link>
             {/* orders */}
             <Link to="/orders" className={styles.other_link}>
