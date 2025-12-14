@@ -14,8 +14,7 @@ const Auth = () => {
   const [user, dispatch] = useContext(DataContext);
   const [loading, setLoading] = useState({signIn:false, signUp:false});
   const navigate = useNavigate();
-
-const authHandler = async(e) =>{
+  const authHandler = async(e) =>{
   e.preventDefault();
   console.log(e.target.name)
   if (e.target.name === "signIn") {
@@ -29,8 +28,7 @@ const authHandler = async(e) =>{
           user:userInfo.user
         })
             setLoading({ ...loading, signIn: false });
-            navigate("/")
-
+            navigate("/");
       })
       .catch((err) => {
         console.log(err);
@@ -55,7 +53,6 @@ const authHandler = async(e) =>{
         console.log(err);
         setError(err.message);
         setLoading({ ...loading, signUp: false });
-
       });
   }
 }
