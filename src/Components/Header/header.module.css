@@ -128,16 +128,27 @@
 @media screen and (max-width: 576px){
   .header_container{
     font-display: flex;
-    flex-direction: column !important;
-    height: auto;
+    justify-content: space-between;
+    gap: 5px;
   }
+  .delivery{
+    display: none;
+  }
+  /* .other_link{
+    dis
+  } */
   .language{
     display: none;
   }
   .search{
     width: 100%;
+    display: none;
+  }
+  .logo img{
+    width: 50px;
   }
 }
+
 
 @media screen and ((max-width: 740px) and (min-width: 576px)){
     .delivery{
