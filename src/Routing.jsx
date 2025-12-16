@@ -7,8 +7,12 @@ import Payment from './Pages/Payment/Payment';
 import Orders from './Pages/Orders/Orders';
 import Result from './Pages/Results/Result';
 import ProductDetails from './Pages/ProductDetails/ProductDetails';
-
+import {Elements} from '@stripe/react-stripe-js'
+import { loadStripe } from '@stripe/stripe-js'; // we can check it from stripe reactJs documentation
 const Routing = () => {
+  const stripePromise = loadStripe(
+    "pk_test_51Se0lmK0YwnsLXqzM3Y3R3WNjkt3lxTwHtsjnRsSV1MUxVyCAT861JzSp6NJCcsKs72YlvZnS5xcKiACh8TCk73x00JzzOruYB"
+  );
   return (
     <div>
       <Router>
@@ -16,10 +20,18 @@ const Routing = () => {
           <Route path="/" element={<Landing />} />
           <Route path="/auth" element={<Auth />} />
           <Route path="/cart" element={<Cart />} />
-          <Route path="/payments" element={<Payment />} />
-          <Route path='/orders' element={<Orders/>}/>
-          <Route path='/category/:categoryName' element={<Result/>}/>
-          <Route path='/products/:productId' element={<ProductDetails/>}/>
+          <Route
+            path="/payments"
+            element={
+              <Elements stripe={stripePromise}>
+                <Payment />
+              </Elements>
+            }
+          />
+          
+          <Route path="/orders" element={<Orders />} />
+          <Route path="/category/:categoryName" element={<Result />} />
+          <Route path="/products/:productId" element={<ProductDetails />} />
         </Routes>
       </Router>
     </div>
