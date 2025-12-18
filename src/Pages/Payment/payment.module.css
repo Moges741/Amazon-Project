@@ -57,12 +57,18 @@
 .payment_details button:hover{
   background-color: var(--primary-shade);
 }
+.loader{
+  display: flex;
+  align-items: center;
+  padding: 10px;
+}
 @media screen and (max-width: 850px){
   .payment__flex{
-    display: block;
+    flex-direction: column;
+    gap: 30px;
   
   }
   .flex{
-    display: block;
+    flex-direction: column;
   }
 }
