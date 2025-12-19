@@ -1,19 +1,22 @@
 import React, { useContext, useState } from "react";
 import styles from "./auth.module.css";
 import logo from "../../assets/images/logo_PNG6.png";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import {auth} from '../../Utility/firebase'
 import { signInWithEmailAndPassword, createUserWithEmailAndPassword } from "firebase/auth"; //from fire base built in
 import {DataContext} from '../../Components/Data/DataProvider'
 import { ClipLoader } from "react-spinners";
 import { Type } from "../../Utility/action.type";
+import { useNavigate, useLocation } from "react-router-dom";
 const Auth = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const [user, dispatch] = useContext(DataContext);
+  const [{user}, dispatch] = useContext(DataContext);
   const [loading, setLoading] = useState({signIn:false, signUp:false});
   const navigate = useNavigate();
+  const navData = useLocation();
+  console.log(navData)
   const authHandler = async(e) =>{
   e.preventDefault();
   console.log(e.target.name)
