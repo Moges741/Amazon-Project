@@ -1,9 +1,20 @@
 {
-  "homepage": "https://Moges741.github.io/Amazon-Project",
   "name": "amazon-frontend",
-  "private": true,
   "version": "0.0.0",
+  "private": true,
+  "description": "This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.",
+  "homepage": "https://Moges741.github.io/Amazon-Project",
+  "bugs": {
+    "url": "https://github.com/Moges741/Amazon-Project/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Moges741/Amazon-Project.git"
+  },
+  "license": "ISC",
+  "author": "",
   "type": "module",
+  "main": "eslint.config.js",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -20,11 +31,11 @@
     "axios": "^1.13.2",
     "firebase": "^12.6.0",
     "numeral": "^2.0.6",
-    "react": "^19.2.0",
-    "react-dom": "^19.2.0",
+    "react": "^19.2.3",
+    "react-dom": "^19.2.3",
     "react-icons": "^5.5.0",
     "react-responsive-carousel": "^3.2.23",
-    "react-router-dom": "^7.10.1",
+    "react-router-dom": "^7.11.0",
     "react-spinners": "^0.17.0"
   },
   "devDependencies": {

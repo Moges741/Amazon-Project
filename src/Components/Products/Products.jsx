@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import axios from "axios";
 import ProductCard from './ProductCard';
 import styles from './products.module.css'
-import Spinner from '../spinner/Spinner';
+import Spinner from '../Spinner/Spinner';
 const Products = () => {
   const [products, setProduct] = useState([]);
   const [isLoading, setIsLoading] = useState(false)

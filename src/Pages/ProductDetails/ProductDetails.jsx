@@ -4,8 +4,7 @@ import { useParams } from 'react-router-dom'
 import axios from 'axios'
 import { productUrl } from '../../API/endPoints'
 import ProductCard from '../../Components/Products/ProductCard'
-import Spinner from '../../Components/spinner/Spinner'
-
+import Spinner from '../../Components/Spinner/Spinner'
 const ProductDetails = () => {
   const {productId} = useParams();
   const [product, setProduct] = useState({});

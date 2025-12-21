@@ -16,7 +16,7 @@ const Auth = () => {
   const [loading, setLoading] = useState({signIn:false, signUp:false});
   const navigate = useNavigate();
   const navData = useLocation();
-  console.log(navData)
+  // console.log(navData)
   const authHandler = async(e) =>{
   e.preventDefault();
   console.log(e.target.name)
@@ -31,7 +31,7 @@ const Auth = () => {
           user:userInfo.user
         })
             setLoading({ ...loading, signIn: false });
-            navigate("/");
+            navigate(navData?.state?.redirect || "/");
       })
       .catch((err) => {
         console.log(err);
@@ -49,7 +49,7 @@ const Auth = () => {
             user: userInfo.user,
           });
           setLoading({ ...loading, signUp: false });
-          navigate("/");
+          navigate(navData?.state?.redirect || "/");
 
       })
       .catch((err) => {
@@ -66,6 +66,18 @@ const Auth = () => {
       </Link>
       <div className={styles.sign_part}>
         <h1>Sign-in</h1>
+        {
+          navData?.state?.msg && (
+            <small style={{
+              padding: "5px",
+              textAlign: "center",
+              color: "red",
+              fontWeight: "bold"
+            }}>
+{navData?.state?.msg}
+            </small>
+          )
+        }
 
         <form action="" className={styles.form_container}>
           <div>

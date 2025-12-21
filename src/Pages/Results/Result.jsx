@@ -6,7 +6,7 @@ import axios from "axios";
 import { productUrl } from "../../API/endPoints";
 import ProductCard from "../../Components/Products/ProductCard";
 import styles from "./result.module.css";
-import Spinner from "../../Components/spinner/Spinner";
+import Spinner from "../../Components/Spinner/Spinner";
 import ResultDesc from "./ResultDesc";
 const Result = () => {
   const [results, setResults] = useState([]);

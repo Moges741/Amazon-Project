@@ -1,29 +1,33 @@
 import Layout from "../../LayOut/Layout";
 import { useContext } from "react";
 import { DataContext } from "../../Components/Data/DataProvider";
-import styles from "./Payment.module.css";
+import styles from "./payment.module.css";
 import ProductCard from "../../Components/Products/ProductCard";
 import { useStripe, useElements, CardElement } from "@stripe/react-stripe-js";
 import { useState } from "react";
+import { Type } from "../../Utility/action.type";
 import CurrencyFormat from "../../Components/CurrencyFormat/CurrencyFormat";
 import { axiosInstance } from "../../API/axios";
 import { ClipLoader } from "react-spinners";
 import { db } from "../../Utility/firebase";
 import { useNavigate } from "react-router-dom";
+// i wanna clear the basket after payment successful? tell me how to do it 
+
 
 
 const Payment = () => {
-  const [{ user, basket }] = useContext(DataContext);
+  const [{ user, basket }, dispatch] = useContext(DataContext);
+  
 
-  const totalItem = basket?.reduce((amount, item) => {
-    return item.price + amount;
+  const totalItem = basket?.reduce((count, item) => {
+    return count + (item.amount || 1);
   }, 0);
   //  to make loading on payment
   const [processing, setProcessing] = useState(false);
   // for total price
-  const total = basket.reduce((amount, item) => {
-    return item.price * item.amount + amount;
-  }, 0);
+  const total = basket?.reduce((amount, item) => {
+    return item.price * (item.amount || 1) + amount;
+  }, 0) || 0;
 
   const [cardError, setCardError] = useState(null);
   const stripe = useStripe();
@@ -42,33 +46,49 @@ const Payment = () => {
         url: `/payment/create?total=${total * 100}`,
       });
       //2. client side (react side ) confirmation .....
-      setProcessing(true);
+      // setProcessing(true);
       const clientSecret = response.data?.clientSecret;
       const confirmation = await stripe.confirmCardPayment(clientSecret, {
         payment_method: {
           card: elements.getElement(CardElement),
         },
       });
+      if (confirmation.error) throw confirmation.error;
       const paymentIntent = confirmation.paymentIntent;
 
-      await db
-        .collection("users")
-        .doc(user.uid)
-        .collection("orders")
-        .doc(paymentIntent.id)
-        .set({
-          basket: basket,
-          amount: paymentIntent.amount,
-          created: paymentIntent.created,
-        });
+      // create a deep copy of the basket so later state changes don't affect stored order
+      const orderItems = basket?.map((it) => ({ ...it })) || [];
 
+      // save order only if user is present
+      if (user) {
+        await db
+          .collection("users")
+          .doc(user.uid)
+          .collection("orders")
+          .doc(paymentIntent.id)
+          .set({
+            basket: orderItems,
+            amount: paymentIntent.amount,
+            created: paymentIntent.created,
+            status: "completed",
+          });
+      }
+
+      // clear local basket only after successful write (or if user not present but payment completed)
+      dispatch({
+        type: Type.EMPTY_BASKET,
+      });
       setProcessing(false);
-      
-    } catch (error) {
-      setProcessing(true);
+      navigate("/orders", {
+        state: {
+          msg: "Your order was placed successfully!",
+        },
+      });
+    }
+    catch(error) {
       console.log("ERROR : --> ", error);
       setProcessing(false);
-  navigate("/orders", {state: {msg: "you have ordered successfully!"}})
+      navigate("/orders", { state: { msg: "There was an issue processing your payment." } });
     }
   };
 
@@ -90,7 +110,7 @@ const Payment = () => {
           <h3>Review items and delivery</h3>
           <div>
             {basket?.map((item) => (
-              <ProductCard products={item} flex={true} />
+              <ProductCard products={item} flex={true} key={item.id || item.title} />
             ))}
           </div>
         </div>
