@@ -11,13 +11,13 @@ import { axiosInstance } from "../../API/axios";
 import { ClipLoader } from "react-spinners";
 import { db } from "../../Utility/firebase";
 import { useNavigate } from "react-router-dom";
-// i wanna clear the basket after payment successful? tell me how to do it 
+
 
 
 
 const Payment = () => {
   const [{ user, basket }, dispatch] = useContext(DataContext);
-  
+
 
   const totalItem = basket?.reduce((count, item) => {
     return count + (item.amount || 1);
@@ -41,6 +41,7 @@ const Payment = () => {
     try {
       // 1. backend || function <---> contact to client secret
       setProcessing(true);
+      setCardError(null);// reset previous errors
       const response = await axiosInstance({
         method: "POST",
         url: `/payment/create?total=${total * 100}`,
@@ -48,16 +49,16 @@ const Payment = () => {
       //2. client side (react side ) confirmation .....
       // setProcessing(true);
       const clientSecret = response.data?.clientSecret;
-      const confirmation = await stripe.confirmCardPayment(clientSecret, {
+      if(!clientSecret) throw new Error("No client secret returned from payment intent creation");
+      const {paymentIntent, error} = await stripe.confirmCardPayment(clientSecret, {
         payment_method: {
           card: elements.getElement(CardElement),
         },
       });
-      if (confirmation.error) throw confirmation.error;
-      const paymentIntent = confirmation.paymentIntent;
+      if (error) throw error;
 
       // create a deep copy of the basket so later state changes don't affect stored order
-      const orderItems = basket?.map((it) => ({ ...it })) || [];
+      const orderItems = basket?.map((item) => ({ ...item })) || [];
 
       // save order only if user is present
       if (user) {
@@ -73,22 +74,23 @@ const Payment = () => {
             status: "completed",
           });
       }
-
-      // clear local basket only after successful write (or if user not present but payment completed)
-      dispatch({
-        type: Type.EMPTY_BASKET,
-      });
       setProcessing(false);
       navigate("/orders", {
         state: {
           msg: "Your order was placed successfully!",
+          orderId: paymentIntent.id,
         },
       });
+      // clear local basket only after successful write (or if user not present but payment completed)
+      dispatch({
+        type: Type.EMPTY_BASKET,
+      });
+
     }
     catch(error) {
       console.log("ERROR : --> ", error);
       setProcessing(false);
-      navigate("/orders", { state: { msg: "There was an issue processing your payment." } });
+      // navigate("/orders", { state: { msg: "There was an issue processing your payment." } });
     }
   };
 
